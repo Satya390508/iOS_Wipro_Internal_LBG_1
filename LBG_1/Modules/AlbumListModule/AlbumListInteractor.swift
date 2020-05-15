@@ -38,7 +38,7 @@ class AlbumListInteractor : PresenterToInteractorAlbumSearchListProtocol {
 	func getAlbumSearchListFromNetwork(with queryText: String) {
 		
 		guard let  reachability = reachability, reachability.isReachable else {
-			self.presenter?.albumSearchFailed(errorMsg: K_Msg_NetworkError)
+			self.presenter?.albumSearchFailed(errorMsg: K_Msg_NetErr_SearchList)
 			return
 		}
 

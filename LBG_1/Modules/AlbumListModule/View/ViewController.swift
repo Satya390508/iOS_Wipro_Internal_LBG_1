@@ -28,6 +28,7 @@ class ViewController: UIViewController {
 		self.searchController.searchBar.placeholder = "Search albums here!"
 		self.tableView.tableHeaderView = self.searchController.searchBar
 		self.searchController.searchResultsUpdater = self
+		self.searchController.searchBar.delegate = self
 		self.searchController.obscuresBackgroundDuringPresentation = false
 		self.definesPresentationContext = true
 
@@ -44,9 +45,13 @@ class ViewController: UIViewController {
 		self.imgCache = NSCache()
 
 		AlbumListRouter.createAlbumSearchListRouter(albumListVC:self)
-		
-		self.tableView.isScrollEnabled = false // To stop scrolling the empty tableview
         }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		self.navigationController?.setNavigationBarHidden(true, animated: false)
+	}
 }
 
 // MARK:- TableView DataSource Methods
@@ -85,22 +90,22 @@ extension ViewController: UITableViewDataSource {
                 return cell
         }
 }
-
-// MARK:- TableView Delegate Methods
+// MARK: TableView Delegate Methods
 extension ViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		DispatchQueue.main.async {
-			self.searchController.searchBar.resignFirstResponder()
-		}
+		let selectedAlbum = self.albumList[indexPath.row]
+		self.albumListPresenter?.showAlbumSelection(with: selectedAlbum, from: self)
 	}
 }
 
 
 // MARK:- UISearchResultUpdating Methods
-extension ViewController: UISearchResultsUpdating {
+extension ViewController: UISearchResultsUpdating, UISearchBarDelegate {
 	func updateSearchResults(for searchController: UISearchController) {
-		self.tableView.isScrollEnabled = searchController.isActive
-		guard let searchTxt = searchController.searchBar.text else { return }		
+	}
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		guard let searchTxt = searchController.searchBar.text else { return }
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		self.albumListPresenter?.getDataFromAlbumListInteractor(for: searchTxt)
 	}
 }
@@ -109,12 +114,17 @@ extension ViewController: UISearchResultsUpdating {
 // MARK:- Presenter Methods
 extension ViewController: PresenterToViewAlbumSearchListProtocol {
 	func onAlbumSearchSucces(albumList: [Album]) {
+		self.albumList.removeAll()
 		self.albumList.append(contentsOf: albumList)
-		DispatchQueue.main.async { self.tableView.reloadData() }
+		DispatchQueue.main.async {
+			UIApplication.shared.isNetworkActivityIndicatorVisible = false
+			self.tableView.reloadData()
+		}
 	}
 	
 	func onAlbumSearchFailed(errorMsg: String) {
 		DispatchQueue.main.async {
+			UIApplication.shared.isNetworkActivityIndicatorVisible = false
 			self.lbl_EmptyList.text = self.searchController.isActive ? errorMsg : K_Msg_SearchEmpty
 			self.albumList.removeAll()
 			self.tableView.reloadData()
