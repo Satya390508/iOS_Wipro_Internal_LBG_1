@@ -26,6 +26,8 @@ protocol InteractorToPresenterAlbumSearchListProtocol {
 class AlbumListInteractor : PresenterToInteractorAlbumSearchListProtocol {
 	var presenter: InteractorToPresenterAlbumSearchListProtocol?
 
+	var reachability = InternetReachability.networkReachabilityForInternetConnection()
+
 	/**
 	* Get data from external sources such as
 	* - URLSession based networking call (REST API)
@@ -34,7 +36,12 @@ class AlbumListInteractor : PresenterToInteractorAlbumSearchListProtocol {
 	*/
 	
 	func getAlbumSearchListFromNetwork(with queryText: String) {
-		// TODO: -  Network check to be done here
+		
+		guard let  reachability = reachability, reachability.isReachable else {
+			self.presenter?.albumSearchFailed(errorMsg: K_Msg_NetworkError)
+			return
+		}
+
 		NetworkServices.fetchAlbumList(for: queryText) { (receivedData, errorMsg) in
 			if errorMsg != nil {
 				self.presenter?.albumSearchFailed(errorMsg: errorMsg!)

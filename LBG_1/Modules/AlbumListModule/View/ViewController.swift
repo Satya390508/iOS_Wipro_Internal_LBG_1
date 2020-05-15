@@ -13,12 +13,11 @@ class ViewController: UIViewController {
 
 	@IBOutlet weak var tableView: UITableView!
 	let lbl_EmptyList: UILabel = UILabel()
-	let cellIdentifier = "AlbumListCell"
 	let searchController = UISearchController(searchResultsController: nil)
 
 	var albumListPresenter: AlbumListPresenter?
 
-	var albumList: [Album]?
+	var albumList = [Album]()
 	var imgCache:NSCache<AnyObject, AnyObject>!
 	
         override func viewDidLoad() {
@@ -45,21 +44,23 @@ class ViewController: UIViewController {
 		self.imgCache = NSCache()
 
 		AlbumListRouter.createAlbumSearchListRouter(albumListVC:self)
+		
+		self.tableView.isScrollEnabled = false // To stop scrolling the empty tableview
         }
 }
 
-
+// MARK:- TableView DataSource Methods
 extension ViewController: UITableViewDataSource {
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let rowCount = self.albumList?.count ?? 0
+		let rowCount = self.albumList.count
 		tableView.backgroundView?.isHidden = (rowCount != 0)
 		return rowCount
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! AlbumCell
-		
-		let currAlbum: Album = (self.albumList?[indexPath.row])!
+		let cell = tableView.dequeueReusableCell(withIdentifier: KAlbumListCellID, for: indexPath) as! AlbumCell
+
+		let currAlbum: Album = self.albumList[indexPath.row]
 		cell.lbl_name.text = currAlbum.name
 		cell.imgvw_icon.image = UIImage(named: "music_icon")
 		
@@ -85,38 +86,38 @@ extension ViewController: UITableViewDataSource {
         }
 }
 
-
+// MARK:- TableView Delegate Methods
 extension ViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		DispatchQueue.main.async {
 			self.searchController.searchBar.resignFirstResponder()
 		}
-		
 	}
 }
 
 
+// MARK:- UISearchResultUpdating Methods
 extension ViewController: UISearchResultsUpdating {
 	func updateSearchResults(for searchController: UISearchController) {
+		self.tableView.isScrollEnabled = searchController.isActive
 		guard let searchTxt = searchController.searchBar.text else { return }		
 		self.albumListPresenter?.getDataFromAlbumListInteractor(for: searchTxt)
 	}
 }
 
 
+// MARK:- Presenter Methods
 extension ViewController: PresenterToViewAlbumSearchListProtocol {
 	func onAlbumSearchSucces(albumList: [Album]) {
-		self.albumList = albumList
+		self.albumList.append(contentsOf: albumList)
 		DispatchQueue.main.async { self.tableView.reloadData() }
 	}
 	
 	func onAlbumSearchFailed(errorMsg: String) {
 		DispatchQueue.main.async {
 			self.lbl_EmptyList.text = self.searchController.isActive ? errorMsg : K_Msg_SearchEmpty
-			if self.albumList != nil {
-				self.albumList = nil
-				self.tableView.reloadData()
-			}
+			self.albumList.removeAll()
+			self.tableView.reloadData()
 		}
 	}
 }
