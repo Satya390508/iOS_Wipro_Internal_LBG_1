@@ -16,6 +16,7 @@ protocol PresenterToRouterAlbumDetailProtocol {
 protocol PresenterToViewAlbumDetailProtocol {
 	func onAlbumDetailSucces(albumList: [Album]) // TODO: - Need to change to AlbumDetail Object
 	func onAlbumDetailFailed(errorMsg: String)
+	func onImageUpdate(_ updatedImg: UIImage?)
 }
 
 protocol ViewToPresenterAlbumDetailProtocol {
@@ -59,9 +60,6 @@ extension AlbumDetailPresenter: InteractorToPresenterAlbumDetailProtocol {
 	}
 	
 	func updateImage(_ downloadedImg: UIImage?) {
-		guard let detailView = self.presenterView as? AlbumDetailVC, let updatedImg = downloadedImg else { return }
-		DispatchQueue.main.async {
-			detailView.imgvw_large.image = updatedImg
-		}
+		self.presenterView?.onImageUpdate(downloadedImg)
 	}
 }

@@ -85,4 +85,12 @@ extension AlbumDetailVC: PresenterToViewAlbumDetailProtocol {
 	func onAlbumDetailFailed(errorMsg: String) {
 		/// TODO: - Failure Handler
 	}
+	
+	func onImageUpdate(_ updatedImg: UIImage?) {
+		if updatedImg != nil {
+			DispatchQueue.main.async {
+				self.imgvw_large.image = updatedImg
+			}
+		}
+	}
 }
