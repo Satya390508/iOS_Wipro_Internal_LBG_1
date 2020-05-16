@@ -49,7 +49,6 @@ class LBG_1UITests: XCTestCase {
 			XCTFail("Error: \(error!.localizedDescription)")
 		}
 	}
-	tableCell.waitForExistence(timeout: 5)
 	tableCell.tap()
 	
 	// Detail View loaded
