@@ -12,7 +12,7 @@ import UIKit
 
 class AlbumListRouter : PresenterToRouterAlbumSearchListProtocol {
 
-	static var mainstoryboard: UIStoryboard {
+	static var mainStoryboard: UIStoryboard {
 		return UIStoryboard(name: "Main", bundle: nil)
 	}
 
@@ -25,6 +25,17 @@ class AlbumListRouter : PresenterToRouterAlbumSearchListProtocol {
 		albumListVC.albumListPresenter?.presenterView = albumListVC
 		albumListVC.albumListPresenter?.interactor = AlbumListInteractor()
 		albumListVC.albumListPresenter?.interactor?.presenter = presenter
+	}
+	
+	func pushToAlbumDetail(with album: Album, from view: UIViewController) {
+		let detailVC = AlbumListRouter.mainStoryboard.instantiateViewController(withIdentifier: "AlbumDetailVC") as! AlbumDetailVC
+		detailVC.album = album
+		if view.navigationController != nil {
+			view.navigationController?.pushViewController(detailVC, animated: true)
+		}
+		else {
+			view.present(detailVC, animated: true, completion: nil)
+		}
 	}
 }
 

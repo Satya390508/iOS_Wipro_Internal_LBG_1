@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		939DEA6F246EAF340048846B /* AlbumDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA6E246EAF340048846B /* AlbumDetailVC.swift */; };
+		939DEA7B246ECCAA0048846B /* AlbumDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA78246ECCAA0048846B /* AlbumDetailPresenter.swift */; };
+		939DEA7C246ECCAA0048846B /* AlbumDetailIntarctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA79246ECCAA0048846B /* AlbumDetailIntarctor.swift */; };
+		939DEA7D246ECCAA0048846B /* AlbumDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA7A246ECCAA0048846B /* AlbumDetailRouter.swift */; };
 		93CB1C02246B015A002877EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C01246B015A002877EA /* AppDelegate.swift */; };
 		93CB1C06246B015A002877EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C05246B015A002877EA /* ViewController.swift */; };
 		93CB1C09246B015A002877EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CB1C07246B015A002877EA /* Main.storyboard */; };
@@ -42,6 +46,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		939DEA6E246EAF340048846B /* AlbumDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailVC.swift; sourceTree = "<group>"; };
+		939DEA78246ECCAA0048846B /* AlbumDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailPresenter.swift; sourceTree = "<group>"; };
+		939DEA79246ECCAA0048846B /* AlbumDetailIntarctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailIntarctor.swift; sourceTree = "<group>"; };
+		939DEA7A246ECCAA0048846B /* AlbumDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailRouter.swift; sourceTree = "<group>"; };
 		93CB1BFE246B015A002877EA /* LBG_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBG_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CB1C01246B015A002877EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CB1C05246B015A002877EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +108,25 @@
 				93CB1C52246E66F9002877EA /* View */,
 			);
 			path = AlbumListModule;
+			sourceTree = "<group>";
+		};
+		939DEA70246EAF3B0048846B /* AlbumDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				939DEA78246ECCAA0048846B /* AlbumDetailPresenter.swift */,
+				939DEA79246ECCAA0048846B /* AlbumDetailIntarctor.swift */,
+				939DEA7A246ECCAA0048846B /* AlbumDetailRouter.swift */,
+				939DEA71246EAF5A0048846B /* View */,
+			);
+			path = AlbumDetailsModule;
+			sourceTree = "<group>";
+		};
+		939DEA71246EAF5A0048846B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				939DEA6E246EAF340048846B /* AlbumDetailVC.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		93CB1BF5246B015A002877EA = {
@@ -167,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				939DEA6D246EACB30048846B /* AlbumListModule */,
+				939DEA70246EAF3B0048846B /* AlbumDetailsModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -320,8 +348,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				939DEA6F246EAF340048846B /* AlbumDetailVC.swift in Sources */,
+				939DEA7B246ECCAA0048846B /* AlbumDetailPresenter.swift in Sources */,
 				93CB1C06246B015A002877EA /* ViewController.swift in Sources */,
+				939DEA7C246ECCAA0048846B /* AlbumDetailIntarctor.swift in Sources */,
 				93CB1C50246D7DCF002877EA /* NetworkServices.swift in Sources */,
+				939DEA7D246ECCAA0048846B /* AlbumDetailRouter.swift in Sources */,
 				93CB1C02246B015A002877EA /* AppDelegate.swift in Sources */,
 				93CB1C46246D633E002877EA /* AlbumListPresenter.swift in Sources */,
 				93CB1C32246BB836002877EA /* Constants.swift in Sources */,

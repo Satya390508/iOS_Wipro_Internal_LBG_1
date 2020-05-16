@@ -7,16 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol PresenterToRouterAlbumSearchListProtocol {
 	static func createAlbumSearchListRouter(albumListVC: ViewController)
+	func pushToAlbumDetail(with album: Album, from view: UIViewController)
 }
+
 
 protocol PresenterToViewAlbumSearchListProtocol {
 	func onAlbumSearchSucces(albumList: [Album])
 	func onAlbumSearchFailed(errorMsg: String)
 }
+
 
 protocol ViewToPresenterAlbumSearchListProtocol {
 	
@@ -31,9 +35,7 @@ protocol ViewToPresenterAlbumSearchListProtocol {
 class AlbumListPresenter: ViewToPresenterAlbumSearchListProtocol {
 	
 	var presenterView: PresenterToViewAlbumSearchListProtocol?
-	
 	var interactor: PresenterToInteractorAlbumSearchListProtocol?
-	
 	var router: PresenterToRouterAlbumSearchListProtocol?
 	
 	func getDataFromAlbumListInteractor(for queryText: String)  {
@@ -43,7 +45,12 @@ class AlbumListPresenter: ViewToPresenterAlbumSearchListProtocol {
 		}
 		self.interactor?.getAlbumSearchListFromNetwork(with: queryText)
 	}
+	
+	func showAlbumSelection(with album: Album, from view: UIViewController) {
+		self.router?.pushToAlbumDetail(with: album, from: view)
+	}
 }
+
 
 extension AlbumListPresenter: InteractorToPresenterAlbumSearchListProtocol {
 	func albumSearchSuccess(albumList: [Album]) {
