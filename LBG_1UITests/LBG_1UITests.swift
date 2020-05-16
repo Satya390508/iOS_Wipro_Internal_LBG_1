@@ -23,21 +23,62 @@ class LBG_1UITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testApplicationFlow() {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
+	let app = XCUIApplication()
+	app.launch()
 
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+	
+	
+	let albumListTable = app.tables.element(matching: .table, identifier: "AlbumListTable")
+	let albumSearchBar = app.searchFields["Search albums here!"]
+	albumSearchBar.tap()
+	albumSearchBar.typeText("Believe")
+		
+	let searchBtn = app.buttons["Search"]
+	let clearBtn = albumSearchBar.buttons["Clear text"]
+	searchBtn.tap()
+	
+	let tableCell = albumListTable.cells.element(matching: .cell, identifier: "AlbumListCell_0")
+	let existsPredicate = NSPredicate(format: "exists == true")
+	expectation(for: existsPredicate, evaluatedWith: tableCell, handler: nil)
+	waitForExpectations(timeout: 5) { (error) in
+		if error != nil {
+			XCTFail("Error: \(error!.localizedDescription)")
+		}
+	}
+	tableCell.waitForExistence(timeout: 5)
+	tableCell.tap()
+	
+	// Detail View loaded
+	let albumDetailNavBar = app.navigationBars["LBG_1.AlbumDetailVC"]
+	XCTAssertFalse(albumDetailNavBar.exists)
+
+	let backButton = app.buttons["Back"]
+	backButton.tap()
+	
+	// Back to List View
+	clearBtn.tap()
+	app.buttons["Cancel"].tap()
+	XCTAssertFalse(albumSearchBar.label.isEmpty)
+	
+	albumListTable.swipeUp()
+	albumListTable.swipeDown()
+	albumListTable.swipeDown()
+	albumListTable.swipeDown()
+	albumListTable.swipeUp()
+	albumListTable.swipeUp()
+	albumListTable.swipeUp()
     }
 
-    func testLaunchPerformance() {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTOSSignpostMetric.applicationLaunch]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

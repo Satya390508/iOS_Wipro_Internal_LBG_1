@@ -11,12 +11,13 @@
 		939DEA7B246ECCAA0048846B /* AlbumDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA78246ECCAA0048846B /* AlbumDetailPresenter.swift */; };
 		939DEA7C246ECCAA0048846B /* AlbumDetailIntarctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA79246ECCAA0048846B /* AlbumDetailIntarctor.swift */; };
 		939DEA7D246ECCAA0048846B /* AlbumDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA7A246ECCAA0048846B /* AlbumDetailRouter.swift */; };
+		939DEA8124700FFC0048846B /* ListViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA8024700FFC0048846B /* ListViewControllerTest.swift */; };
+		939DEA8524707CCF0048846B /* LBG_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939DEA8424707CCF0048846B /* LBG_1Tests.swift */; };
 		93CB1C02246B015A002877EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C01246B015A002877EA /* AppDelegate.swift */; };
 		93CB1C06246B015A002877EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C05246B015A002877EA /* ViewController.swift */; };
 		93CB1C09246B015A002877EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CB1C07246B015A002877EA /* Main.storyboard */; };
 		93CB1C0B246B015C002877EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93CB1C0A246B015C002877EA /* Assets.xcassets */; };
 		93CB1C0E246B015C002877EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CB1C0C246B015C002877EA /* LaunchScreen.storyboard */; };
-		93CB1C19246B015D002877EA /* LBG_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C18246B015D002877EA /* LBG_1Tests.swift */; };
 		93CB1C24246B015D002877EA /* LBG_1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C23246B015D002877EA /* LBG_1UITests.swift */; };
 		93CB1C32246BB836002877EA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C31246BB836002877EA /* Constants.swift */; };
 		93CB1C36246C3F7A002877EA /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CB1C35246C3F7A002877EA /* AlbumCell.swift */; };
@@ -50,6 +51,8 @@
 		939DEA78246ECCAA0048846B /* AlbumDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailPresenter.swift; sourceTree = "<group>"; };
 		939DEA79246ECCAA0048846B /* AlbumDetailIntarctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailIntarctor.swift; sourceTree = "<group>"; };
 		939DEA7A246ECCAA0048846B /* AlbumDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDetailRouter.swift; sourceTree = "<group>"; };
+		939DEA8024700FFC0048846B /* ListViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewControllerTest.swift; sourceTree = "<group>"; };
+		939DEA8424707CCF0048846B /* LBG_1Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LBG_1Tests.swift; sourceTree = "<group>"; };
 		93CB1BFE246B015A002877EA /* LBG_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LBG_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CB1C01246B015A002877EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CB1C05246B015A002877EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +61,6 @@
 		93CB1C0D246B015C002877EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93CB1C0F246B015C002877EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CB1C14246B015D002877EA /* LBG_1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LBG_1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		93CB1C18246B015D002877EA /* LBG_1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBG_1Tests.swift; sourceTree = "<group>"; };
 		93CB1C1A246B015D002877EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		93CB1C1F246B015D002877EA /* LBG_1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LBG_1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CB1C23246B015D002877EA /* LBG_1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBG_1UITests.swift; sourceTree = "<group>"; };
@@ -166,7 +168,8 @@
 		93CB1C17246B015D002877EA /* LBG_1Tests */ = {
 			isa = PBXGroup;
 			children = (
-				93CB1C18246B015D002877EA /* LBG_1Tests.swift */,
+				939DEA8424707CCF0048846B /* LBG_1Tests.swift */,
+				939DEA8024700FFC0048846B /* ListViewControllerTest.swift */,
 				93CB1C1A246B015D002877EA /* Info.plist */,
 			);
 			path = LBG_1Tests;
@@ -369,7 +372,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93CB1C19246B015D002877EA /* LBG_1Tests.swift in Sources */,
+				939DEA8124700FFC0048846B /* ListViewControllerTest.swift in Sources */,
+				939DEA8524707CCF0048846B /* LBG_1Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,14 +11,19 @@ import UIKit
 
 
 class NetworkServices {
-	static func fetchAlbumList(for queryText: String, complitionHandler: @escaping (Data?, String?) -> Void) {
+	static func getUrlComponents(for method: String, with queryText: String) -> URLComponents {
 		var urlComps = URLComponents(string: BASE_URL)!
 		let queryItems = [URLQueryItem(name: "format", value: "json"),
-				  URLQueryItem(name: "method", value: "album.search"),
 				  URLQueryItem(name: "api_key", value: API_KEY),
+				  URLQueryItem(name: "method", value: method),
 				  URLQueryItem(name: "album", value: queryText)]
 		urlComps.queryItems = queryItems
-		
+
+		return urlComps
+	}
+	
+	static func fetchAlbumList(for queryText: String, complitionHandler: @escaping (Data?, String?) -> Void) {
+		let urlComps = self.getUrlComponents(for: "album.search", with: queryText)
 		let networkTask = URLSession.shared.dataTask(with: urlComps.url!) { (receivedData, receivedResponse, receivedErr) in
 			
 			if (receivedErr != nil) {
