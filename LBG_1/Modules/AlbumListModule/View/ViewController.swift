@@ -31,7 +31,10 @@ class ViewController: UIViewController {
 		self.searchController.searchBar.delegate = self
 		self.searchController.obscuresBackgroundDuringPresentation = false
 		self.definesPresentationContext = true
+		self.searchController.searchBar.accessibilityTraits = .searchField
 
+		self.tableView.accessibilityIdentifier = "AlbumListTable"
+		
 		/// Setting up the empty view for the table view for search failure
 		self.tableView.tableFooterView = UIView()
 		self.lbl_EmptyList.frame = CGRect(origin: CGPoint(x: 30, y: 30), size: CGSize(width: self.view.frame.width - 60, height: self.view.frame.height - 60))
@@ -87,7 +90,8 @@ extension ViewController: UITableViewDataSource {
 				}
 			}
 		}
-                return cell
+		cell.accessibilityIdentifier = "AlbumListCell_\(indexPath.row)"
+		return cell
         }
 }
 // MARK: TableView Delegate Methods
